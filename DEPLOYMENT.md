@@ -12,32 +12,34 @@ MediaFetchr/
 │   ├── src/
 │   │   ├── App.js
 │   │   └── App.css
-│   ├── package.json
-│   └── render.yaml
+│   └── package.json
+├── render.yaml
 └── README.md
 ```
 
 ### Step 2: Render Configuration
 
 #### Option A: Using render.yaml (Recommended)
-1. The `frontend/render.yaml` file is already configured
-2. Render will automatically detect and use this configuration
+The `render.yaml` file is already configured with:
+- **Build Command**: `cd frontend && npm install && npm run build`
+- **Publish Directory**: `frontend/build`
+- **Node Version**: 20.x
 
 #### Option B: Manual Configuration
 If you prefer to configure manually in Render dashboard:
 
 **Build Command:**
 ```bash
-npm install && npm run build
+cd frontend && npm install && npm run build
 ```
 
 **Publish Directory:**
 ```
-build
+frontend/build
 ```
 
 **Environment Variables:**
-- `NODE_VERSION`: `18.0.0`
+- `NODE_VERSION`: `20.0.0`
 - `REACT_APP_API_URL`: `https://your-backend-url.onrender.com/api` (set this when you deploy the backend)
 
 ### Step 3: Deploy to Render
@@ -45,11 +47,7 @@ build
 1. **Go to Render Dashboard**: https://dashboard.render.com
 2. **Click "New +"** → **"Static Site"**
 3. **Connect your GitHub repository**
-4. **Configure the service:**
-   - **Name**: `mediafetchr-frontend`
-   - **Build Command**: `npm install && npm run build`
-   - **Publish Directory**: `build`
-   - **Environment**: Static Site
+4. **The render.yaml will be automatically detected and used**
 
 ### Step 4: Set Environment Variables
 
@@ -66,9 +64,9 @@ When you're ready to deploy the backend:
 ## Troubleshooting
 
 ### Build Fails with "index.html not found"
-- Make sure you're deploying from the `frontend` directory
-- Verify that `frontend/public/index.html` exists
-- Check that the build command is running from the correct directory
+- The build command should be: `cd frontend && npm install && npm run build`
+- The publish directory should be: `frontend/build`
+- Verify that `frontend/public/index.html` exists in your repository
 
 ### API Calls Fail
 - Set the `REACT_APP_API_URL` environment variable to your backend URL
@@ -78,7 +76,7 @@ When you're ready to deploy the backend:
 ### Static Assets Not Loading
 - Verify that all assets are in the `frontend/public` directory
 - Check that the build process completed successfully
-- Ensure the publish directory is set to `build`
+- Ensure the publish directory is set to `frontend/build`
 
 ## Development vs Production
 
