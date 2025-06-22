@@ -3,7 +3,15 @@ services:
     name: mediafetchr-frontend
     env: static
     plan: free
-    buildCommand: chmod +x build-frontend.sh && ./build-frontend.sh
+    buildCommand: |
+      echo "Starting build process..."
+      ls -la
+      cd frontend
+      echo "Changed to frontend directory"
+      ls -la
+      npm install
+      npm run build
+      echo "Build completed"
     staticPublishPath: frontend/build
     envVars:
       - key: NODE_VERSION
