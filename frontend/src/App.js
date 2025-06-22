@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost/api';
+const API_URL = process.env.REACT_APP_API_URL || 'https://your-backend-url.onrender.com/api';
 
 function App() {
   const [url, setUrl] = useState('');
