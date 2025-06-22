@@ -1,0 +1,11 @@
+Flask==2.3.3
+Flask-CORS==4.0.0
+redis==5.0.1
+requests==2.31.0
+yt-dlp==2023.11.16
+Pillow==10.1.0
+python-magic==0.4.27
+validators==0.22.0
+celery==5.3.4
+gunicorn==21.2.0
+python-dotenv==1.0.0 

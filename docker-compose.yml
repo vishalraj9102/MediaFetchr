@@ -1,0 +1,58 @@
+services:
+  # Flask Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mediafetchr-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - REDIS_URL=redis://redis:6379
+      - UPLOAD_FOLDER=/app/uploads
+      - MAX_FILE_SIZE=500MB
+    volumes:
+      - ./backend/uploads:/app/uploads
+    depends_on:
+      - redis
+    networks:
+      - mediafetchr-network
+
+
+
+  # Redis for caching and session management
+  redis:
+    image: redis:7-alpine
+    container_name: mediafetchr-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - mediafetchr-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: mediafetchr-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+
+    networks:
+      - mediafetchr-network
+
+volumes:
+  redis_data:
+
+networks:
+  mediafetchr-network:
+    driver: bridge 
