@@ -2,8 +2,10 @@ services:
   - type: web
     name: mediafetchr-frontend
     env: static
-    buildCommand: cd frontend && npm install && npm run build
+    plan: free
+    buildCommand: chmod +x build-frontend.sh && ./build-frontend.sh
     staticPublishPath: frontend/build
     envVars:
       - key: NODE_VERSION
-        value: 20.0.0 
+        value: 20.0.0
+    autoDeploy: true 

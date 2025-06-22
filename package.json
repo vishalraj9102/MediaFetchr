@@ -1,0 +1,27 @@
+{
+  "name": "mediafetchr",
+  "version": "1.0.0",
+  "description": "A secure public media downloader platform",
+  "scripts": {
+    "build": "./build-frontend.sh",
+    "start": "echo 'This is a static site deployment'"
+  },
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/mediafetchr.git"
+  },
+  "keywords": [
+    "media",
+    "downloader",
+    "youtube",
+    "instagram",
+    "tiktok",
+    "react"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+} 
